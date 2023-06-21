@@ -1,35 +1,36 @@
 import { useState } from 'react'
+import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Button } from 'react-bootstrap'
 import CheckoutModal from './CheckoutModal'
 import CheckoutOptions from './CheckoutOptions'
+import clipboard from './assets/clipboard2-check.svg'
+import { useAppContext } from './AppContext'
 
 function App() {
-  const [modalShow, setModalShow] = useState(false)
-  const [checkout, setCheckout] = useState([])
-  const [optionShow, setOptionShow] = useState(false)
+  const { state, dispatch } = useAppContext()
+  const { modalShow, checkout, optionShow } = state
+
+  function handleDispatch(actionPayload) {
+    dispatch({ type: 'update', payload: actionPayload })
+  }
 
   const handleModals = (e) => {
     const button = e.target.dataset.name
     if (button === 'close') {
-      setModalShow(false)
-      setOptionShow(false)
+      handleDispatch({ modalShow: false, optionShow: false })
     }
     if (button === 'checkout') {
-      setModalShow(true)
-      setOptionShow(false)
+      handleDispatch({ modalShow: true, optionShow: false })
     }
     if (button === 'cancel-options' || button === 'confirm-options') {
-      setOptionShow(false)
-      setModalShow(true)
+      handleDispatch({ optionShow: false, modalShow: true })
     }
     if (button === 'confirm') {
-      setModalShow(false)
-      setOptionShow(false)
+      handleDispatch({ modalShow: false, optionShow: false })
     }
     if (button === 'edit') {
-      setModalShow(false)
-      setOptionShow(true)
+      handleDispatch({ modalShow: false, optionShow: true })
     }
   }
   return (
@@ -40,7 +41,12 @@ function App() {
         size="lg"
         onClick={handleModals}
       >
-        Checkout
+        <img
+          data-name="checkout"
+          className="clipboard"
+          src={clipboard}
+          alt="clipboard"
+        />
       </Button>
       <CheckoutModal modalShow={modalShow} handleModal={handleModals} />
       <CheckoutOptions optionShow={optionShow} handleOptions={handleModals} />

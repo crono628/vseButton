@@ -13,3 +13,12 @@
   justify-content: center;
   height: 100vh;
 }
+
+.clipboard {
+  filter: brightness(0) invert(1);
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0;
+}
