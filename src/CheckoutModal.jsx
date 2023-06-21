@@ -10,18 +10,18 @@ const CheckoutModal = ({ modalShow, handleModal }) => {
         backdrop="static"
         keyboard={false}
       >
-        <Modal.Header closeButton>
+        <Modal.Header>
           <Modal.Title>Checkout Sheet</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <p>Are you sure you want to checkout?</p>
         </Modal.Body>
         <Modal.Footer>
-          <Button data-name="edit" variant="secondary" onClick={handleModal}>
-            Edit
+          <Button data-name="close" variant="secondary" onClick={handleModal}>
+            Close
           </Button>
-          <Button data-name="confirm" variant="primary" onClick={handleModal}>
-            Confirm
+          <Button data-name="edit" variant="primary" onClick={handleModal}>
+            Edit
           </Button>
         </Modal.Footer>
       </Modal>
