@@ -1,7 +1,10 @@
 import React from 'react'
 import { Button, Modal } from 'react-bootstrap'
+import { useAppContext } from './AppContext'
 
 const CheckoutModal = ({ modalShow, handleModal }) => {
+  const { state } = useAppContext()
+  const { checkout } = state
   return (
     <>
       <Modal
@@ -14,7 +17,9 @@ const CheckoutModal = ({ modalShow, handleModal }) => {
           <Modal.Title>Checkout Sheet</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p>Are you sure you want to checkout?</p>
+          <p>
+            {checkout.length === 0 ? 'No orders yet' : 'placeholder for orders'}
+          </p>
         </Modal.Body>
         <Modal.Footer>
           <Button data-name="close" variant="secondary" onClick={handleModal}>

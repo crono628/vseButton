@@ -1,7 +1,8 @@
 const initialState = {
   modalShow: false,
   optionShow: false,
-  checkout: []
+  checkout: [],
+  rtc: '6'
 }
 
 function stateReducer(state, { type, payload }) {

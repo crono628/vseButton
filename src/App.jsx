@@ -9,7 +9,7 @@ import { useAppContext } from './AppContext'
 
 function App() {
   const { state, dispatch } = useAppContext()
-  const { modalShow, checkout, optionShow } = state
+  const { modalShow, optionShow } = state
 
   function handleDispatch(actionPayload) {
     dispatch({ type: 'update', payload: actionPayload })

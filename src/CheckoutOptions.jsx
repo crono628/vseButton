@@ -1,5 +1,6 @@
 import React from 'react'
 import { Tab, Tabs, Modal, Button } from 'react-bootstrap'
+import ReturnToClinic from './components/ReturnToClinic'
 
 const CheckoutOptions = ({ optionShow, handleOptions }) => {
   return (
@@ -11,7 +12,7 @@ const CheckoutOptions = ({ optionShow, handleOptions }) => {
         <Modal.Body>
           <Tabs defaultActiveKey="rtc" id="uncontrolled-tab-example">
             <Tab eventKey="rtc" title="RTC">
-              <p>RTC STUFF</p>
+              <ReturnToClinic />
             </Tab>
             <Tab eventKey="today" title="Today">
               <p>labs, pharm, xray, etc</p>

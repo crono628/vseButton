@@ -22,3 +22,18 @@
   justify-content: center;
   margin: 10px 0;
 }
+
+.month-dropdown {
+  width: 70px;
+}
+
+.clinic-text {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.return-to-clinic-text.disabled {
+  color: #6c757d;
+  pointer-events: none;
+}
