@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useAppContext } from '../AppContext'
-import { Form } from 'react-bootstrap'
+import { Container, Form } from 'react-bootstrap'
 
 const ReturnToClinic = () => {
   const { state, dispatch } = useAppContext()
@@ -21,7 +21,7 @@ const ReturnToClinic = () => {
   }
 
   return (
-    <>
+    <Container>
       <Form>
         <Form.Check
           type="radio"
@@ -60,7 +60,7 @@ const ReturnToClinic = () => {
           </>
         )}
       </Form>
-    </>
+    </Container>
   )
 }
 

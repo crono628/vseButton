@@ -2,7 +2,32 @@ const initialState = {
   modalShow: false,
   optionShow: false,
   checkout: [],
-  rtc: '6'
+  rtc: '6',
+  vaccineList: {
+    influenza: false,
+    shingrix1: false,
+    shingrix2: false,
+    pneumovax: false,
+    covidVaccine: false,
+    prevnar: false,
+    ppd: false,
+    gardasil: false,
+    twinrix: false,
+    hepA: false,
+    hepB: false,
+    tdap: false,
+    b12: false,
+    td: false
+  },
+  requestRecords: false,
+  recordsRequested: {
+    provider: '',
+    organization: '',
+    dates: '',
+    type: '',
+    officeNumber: '',
+    faxNumber: ''
+  }
 }
 
 function stateReducer(state, { type, payload }) {

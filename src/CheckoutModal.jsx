@@ -17,9 +17,7 @@ const CheckoutModal = ({ modalShow, handleModal }) => {
           <Modal.Title>Checkout Sheet</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p>
-            {checkout.length === 0 ? 'No orders yet' : 'placeholder for orders'}
-          </p>
+          {checkout.length === 0 ? 'No orders yet' : 'placeholder for orders'}
         </Modal.Body>
         <Modal.Footer>
           <Button data-name="close" variant="secondary" onClick={handleModal}>
