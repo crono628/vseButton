@@ -27,7 +27,8 @@ const initialState = {
     type: '',
     officeNumber: '',
     faxNumber: ''
-  }
+  },
+  ordersEntered: false
 }
 
 function stateReducer(state, { type, payload }) {

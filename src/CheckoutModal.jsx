@@ -4,7 +4,38 @@ import { useAppContext } from './AppContext'
 
 const CheckoutModal = ({ modalShow, handleModal }) => {
   const { state } = useAppContext()
-  const { checkout } = state
+
+  const rtcDiv = state.rtc ? (
+    <div>
+      <strong>RTC: </strong>
+      {state.rtc} months
+    </div>
+  ) : null
+
+  const vaccineListDiv = () => {
+    const vaccineList = state.vaccineList
+    const vaccineListDiv = []
+    for (const [key, value] of Object.entries(vaccineList)) {
+      if (value) {
+        vaccineListDiv.push(key)
+      }
+    }
+    return vaccineListDiv
+  }
+
+  const recordsRequestedDiv = Object.entries(state.recordsRequested).map(
+    ([key, value]) => {
+      if (value.length > 0) {
+        return (
+          <div key={key}>
+            <strong>{key}: </strong>
+            {value}
+          </div>
+        )
+      }
+    }
+  )
+
   return (
     <>
       <Modal
@@ -17,7 +48,20 @@ const CheckoutModal = ({ modalShow, handleModal }) => {
           <Modal.Title>Checkout Sheet</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {checkout.length === 0 ? 'No orders yet' : 'placeholder for orders'}
+          {!state.ordersEntered ? (
+            'No orders yet'
+          ) : (
+            <div>
+              {rtcDiv}
+              {
+                <div>
+                  <strong>Vaccines: </strong>
+                  {vaccineListDiv().join(', ')}
+                </div>
+              }
+              {recordsRequestedDiv}
+            </div>
+          )}
         </Modal.Body>
         <Modal.Footer>
           <Button data-name="close" variant="secondary" onClick={handleModal}>

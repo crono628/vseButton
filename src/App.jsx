@@ -15,6 +15,29 @@ function App() {
     dispatch({ type: 'update', payload: actionPayload })
   }
 
+  function handleCheckoutSummary() {
+    const displayArray = []
+    displayArray.push(state.rtc)
+    //iterate through state.vaccineList and return true values
+    const vaccineList = state.vaccineList
+    for (const [key, value] of Object.entries(vaccineList)) {
+      if (value) {
+        displayArray.push(key)
+      }
+    }
+    //iterate through state.recordsRequested and return values with length > 0
+    const recordsRequested = state.recordsRequested
+    for (const [key, value] of Object.entries(recordsRequested)) {
+      if (value.length > 0) {
+        displayArray.push(value)
+      }
+    }
+    dispatch({
+      type: 'update',
+      payload: { checkout: displayArray, ordersEntered: true }
+    })
+  }
+
   const handleModals = (e) => {
     const button = e.target.dataset.name
     if (button === 'close') {
@@ -24,6 +47,9 @@ function App() {
       handleDispatch({ modalShow: true, optionShow: false })
     }
     if (button === 'cancel-options' || button === 'confirm-options') {
+      if (button === 'confirm-options') {
+        handleCheckoutSummary()
+      }
       handleDispatch({ optionShow: false, modalShow: true })
     }
     if (button === 'confirm') {
