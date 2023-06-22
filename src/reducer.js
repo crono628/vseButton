@@ -2,7 +2,7 @@ const initialState = {
   modalShow: false,
   optionShow: false,
   checkout: [],
-  rtc: '6',
+  rtc: '',
   vaccineList: {
     influenza: false,
     shingrix1: false,

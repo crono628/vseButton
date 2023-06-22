@@ -8,7 +8,7 @@ const CheckoutModal = ({ modalShow, handleModal }) => {
   const rtcDiv = state.rtc ? (
     <div>
       <strong>RTC: </strong>
-      {state.rtc} months
+      {state.rtc} {state.rtc === 'PRN' ? '' : 'months'}
     </div>
   ) : null
 
@@ -23,18 +23,23 @@ const CheckoutModal = ({ modalShow, handleModal }) => {
     return vaccineListDiv
   }
 
-  const recordsRequestedDiv = Object.entries(state.recordsRequested).map(
-    ([key, value]) => {
-      if (value.length > 0) {
-        return (
-          <div key={key}>
-            <strong>{key}: </strong>
-            {value}
-          </div>
-        )
+  const recordsRequestedDiv = () => {
+    const recordsRequested = state.recordsRequested
+    const recordsRequestedDiv = []
+    for (const [key, value] of Object.entries(recordsRequested)) {
+      if (value) {
+        recordsRequestedDiv.push(value)
       }
     }
-  )
+    return recordsRequestedDiv.length > 0 ? (
+      <div>
+        <strong>Request records from: </strong>
+        {recordsRequestedDiv.map((item, index) => {
+          return <div key={index}>{item}</div>
+        })}
+      </div>
+    ) : null
+  }
 
   return (
     <>
@@ -53,13 +58,13 @@ const CheckoutModal = ({ modalShow, handleModal }) => {
           ) : (
             <div>
               {rtcDiv}
-              {
+              {vaccineListDiv().length > 0 && (
                 <div>
                   <strong>Vaccines: </strong>
-                  {vaccineListDiv().join(', ')}
+                  {vaccineListDiv()?.join(', ')}
                 </div>
-              }
-              {recordsRequestedDiv}
+              )}
+              {recordsRequestedDiv()}
             </div>
           )}
         </Modal.Body>

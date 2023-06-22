@@ -4,11 +4,11 @@ import { Container, Form } from 'react-bootstrap'
 
 const ReturnToClinic = () => {
   const { state, dispatch } = useAppContext()
-  const [selectedOption, setSelectedOption] = useState('return-prn')
+  const [selectedOption, setSelectedOption] = useState('')
 
   const handleRadioChange = (e) => {
     if (e.target.value === 'return-prn') {
-      dispatch({ type: 'update', payload: { rtc: 'RTC PRN' } })
+      dispatch({ type: 'update', payload: { rtc: 'PRN' } })
     }
     if (e.target.value === 'return-to-clinic') {
       dispatch({ type: 'update', payload: { rtc: '6' } })
