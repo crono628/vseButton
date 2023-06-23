@@ -2,7 +2,7 @@ import React from 'react'
 import { Tab, Tabs, Modal, Button } from 'react-bootstrap'
 import ReturnToClinic from './components/ReturnToClinic'
 import Today from './components/Today'
-import VaccineForm from './components/VaccineForm'
+import InjectionForm from './components/InjectionForm'
 import MedicalRecordsForm from './components/MedicalRecordsForm'
 
 const CheckoutOptions = ({ optionShow, handleOptions }) => {
@@ -15,7 +15,7 @@ const CheckoutOptions = ({ optionShow, handleOptions }) => {
         <Modal.Body>
           <Tabs
             defaultActiveKey="rtc"
-            id="uncontrolled-tab-example"
+            id="checkout-options"
             style={{ marginBottom: '20px' }}
           >
             <Tab eventKey="rtc" title="RTC">
@@ -27,8 +27,8 @@ const CheckoutOptions = ({ optionShow, handleOptions }) => {
             <Tab eventKey="future" title="Future">
               <p>future stuff</p>
             </Tab>
-            <Tab eventKey="vaccines" title="Vaccines">
-              <VaccineForm />
+            <Tab eventKey="injections" title="Injections">
+              <InjectionForm />
             </Tab>
             <Tab eventKey="records" title="Records">
               <MedicalRecordsForm />

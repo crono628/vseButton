@@ -5,22 +5,25 @@ import { useAppContext } from './AppContext'
 const CheckoutModal = ({ modalShow, handleModal }) => {
   const { state } = useAppContext()
 
-  const rtcDiv = state.rtc ? (
-    <div>
-      <strong>RTC: </strong>
-      {state.rtc} {state.rtc === 'PRN' ? '' : 'months'}
-    </div>
-  ) : null
+  const rtcDiv = () => {
+    const rtc = state.rtc
+    return rtc.length > 0 ? (
+      <div>
+        <strong>RTC: </strong>
+        {rtc} {rtc === 'PRN' ? '' : 'months'}
+      </div>
+    ) : null
+  }
 
-  const vaccineListDiv = () => {
-    const vaccineList = state.vaccineList
-    const vaccineListDiv = []
-    for (const [key, value] of Object.entries(vaccineList)) {
-      if (value) {
-        vaccineListDiv.push(key)
+  const injectionsDiv = () => {
+    const injections = state.injections
+    const injectionsDiv = []
+    for (const [key, value] of Object.entries(injections)) {
+      if (value.checked) {
+        injectionsDiv.push(value.name)
       }
     }
-    return vaccineListDiv
+    return injectionsDiv
   }
 
   const recordsRequestedDiv = () => {
@@ -41,6 +44,17 @@ const CheckoutModal = ({ modalShow, handleModal }) => {
     ) : null
   }
 
+  const todayDiv = () => {
+    const today = state.today
+    const todayDiv = []
+    for (const [key, value] of Object.entries(today)) {
+      if (value.checked) {
+        todayDiv.push(value.name)
+      }
+    }
+    return todayDiv
+  }
+
   return (
     <>
       <Modal
@@ -57,11 +71,17 @@ const CheckoutModal = ({ modalShow, handleModal }) => {
             'No orders yet'
           ) : (
             <div>
-              {rtcDiv}
-              {vaccineListDiv().length > 0 && (
+              {rtcDiv()}
+              {injectionsDiv().length > 0 && (
                 <div>
                   <strong>Vaccines: </strong>
-                  {vaccineListDiv()?.join(', ')}
+                  {injectionsDiv()?.join(', ')}
+                </div>
+              )}
+              {todayDiv().length > 0 && (
+                <div>
+                  <strong>Today: </strong>
+                  {todayDiv()?.join(', ')}
                 </div>
               )}
               {recordsRequestedDiv()}

@@ -7,7 +7,6 @@ const RecordsInput = () => {
   const { recordsRequested } = state
 
   const handleChange = (e) => {
-    console.log(e.target)
     const { id, value } = e.target
     dispatch({
       type: 'update',

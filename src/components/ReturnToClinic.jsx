@@ -1,19 +1,23 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useAppContext } from '../AppContext'
 import { Container, Form } from 'react-bootstrap'
 
 const ReturnToClinic = () => {
   const { state, dispatch } = useAppContext()
-  const [selectedOption, setSelectedOption] = useState('')
 
   const handleRadioChange = (e) => {
     if (e.target.value === 'return-prn') {
-      dispatch({ type: 'update', payload: { rtc: 'PRN' } })
+      dispatch({
+        type: 'update',
+        payload: { rtc: 'PRN', selectedRtcOption: 'return-prn' }
+      })
     }
     if (e.target.value === 'return-to-clinic') {
-      dispatch({ type: 'update', payload: { rtc: '6' } })
+      dispatch({
+        type: 'update',
+        payload: { rtc: '6', selectedRtcOption: 'return-to-clinic' }
+      })
     }
-    setSelectedOption(e.target.value)
   }
 
   const handleMonthChange = (e) => {
@@ -29,7 +33,7 @@ const ReturnToClinic = () => {
           name="return-to"
           id="return-prn"
           value="return-prn"
-          checked={selectedOption === 'return-prn'}
+          checked={state.selectedRtcOption === 'return-prn'}
           onChange={handleRadioChange}
         />
         <Form.Check
@@ -38,10 +42,10 @@ const ReturnToClinic = () => {
           name="return-to"
           id="return-to-clinic"
           value="return-to-clinic"
-          checked={selectedOption === 'return-to-clinic'}
+          checked={state.selectedRtcOption === 'return-to-clinic'}
           onChange={handleRadioChange}
         />
-        {selectedOption === 'return-to-clinic' && (
+        {state.selectedRtcOption === 'return-to-clinic' && (
           <>
             <div className="clinic-text">
               Return to clinic in

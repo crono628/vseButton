@@ -18,13 +18,15 @@ function App() {
   function handleCheckoutSummary() {
     const displayArray = []
     displayArray.push(state.rtc)
-    //iterate through state.vaccineList and return true values
-    const vaccineList = state.vaccineList
-    for (const [key, value] of Object.entries(vaccineList)) {
-      if (value) {
-        displayArray.push(key)
+
+    //iterate throught the injections array of objects and return values with checked === true
+    const injections = state.injections
+    for (const [key, value] of Object.entries(injections)) {
+      if (value.checked === true) {
+        displayArray.push(value.name)
       }
     }
+
     //iterate through state.recordsRequested and return values with length > 0
     const recordsRequested = state.recordsRequested
     for (const [key, value] of Object.entries(recordsRequested)) {
